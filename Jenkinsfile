@@ -37,13 +37,9 @@ pipeline {
         }
         stage('Docker Hub Login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerCredentials', 
-                                          passwordVariable: 'DOCKERHUB_CRED_PSW', 
-                                          usernameVariable: 'DOCKERHUB_CRED_USER')]) {
                 echo 'Docker Hub Login'
-                sh "echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USER} --password-stdin"
+                sh "echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin"
                 }
-            }
         }
         stage('Docker Image Push') {
             steps {
